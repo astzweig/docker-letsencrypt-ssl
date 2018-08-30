@@ -4,3 +4,9 @@ LABEL version="1.0.0-alpha"
 LABEL description="A docker container to automatize the certification and \
 renewal of Let's Encrypt SSL certificates with the help of letsencrypt's \
 certbot and (possibly your own) lexicon-dns."
+
+COPY ./scripts /root/scripts
+RUN for file in /root/scripts/[0-9]*.sh; do \
+        chmod u+x "${file}"; \
+        "${file}"; \
+    done
