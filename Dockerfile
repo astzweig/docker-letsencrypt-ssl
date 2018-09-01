@@ -10,3 +10,7 @@ RUN for file in /root/scripts/[0-9]*.sh; do \
         chmod u+x "${file}"; \
         "${file}"; \
     done
+
+RUN mv /root/scripts/container-setup.sh /usr/local/bin && \
+    chmod u+x /usr/local/bin/container-setup.sh;
+CMD ["/usr/local/bin/container-setup.sh"]
