@@ -16,15 +16,34 @@ _grab_repo() {
     fi
 }
 
+_install_lexicon() {
+    local GITHUB_SLUG="${1}";
+    local REPO_DIR="${2}";
+    local BRANCH="${3}";
+    local PROVIDER="${4}";
+
+    _grab_repo "https://github.com/${GITHUB_SLUG}.git" \
+               "${REPO_DIR}" \
+               "${BRANCH}";
+
+    cd "${REPO_DIR}";
+    pip install -e ".[${PROVIDER}]";
+
+    # Check if installation of lexicon worked
+    which lexicon > /dev/null;
+    [ $? -ne 0 ] && exit 2;
+}
+
 main () {
     local GITHUB_SLUG="${GITHUB_SLUG:-analogj/lexicon}";
     local BRANCH="${GITHUB_BRANCH:-master}";
     local PROVIDER="${PROVIDER}";
     local REPO_DIR="/lexicon-repo";
 
-    _grab_repo "https://github.com/${GITHUB_SLUG}.git" \
-               "${REPO_DIR}" \
-               "${BRANCH}";
+    _install_lexicon "${GITHUB_SLUG}" \
+                     "${REPO_DIR}" \
+                     "${BRANCH}" \
+                     "${PROVIDER}";
     return 0;
 }
 
