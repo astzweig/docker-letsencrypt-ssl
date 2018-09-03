@@ -38,6 +38,8 @@ main () {
     local GITHUB_SLUG="${GITHUB_SLUG:-analogj/lexicon}";
     local BRANCH="${GITHUB_BRANCH:-master}";
     local PROVIDER="${PROVIDER}";
+    local EMAIL="${EMAIL}";
+    local DOMAINS="${DOMAINS}";
     local REPO_DIR="/lexicon-repo";
 
     _install_lexicon "${GITHUB_SLUG}" \
@@ -51,9 +53,17 @@ main () {
                                "lexicon-dns via the PROVIDER environment " \
                                "variable.";
                         exit 100; }
+[ -z "${EMAIL}" ] && { echo "You need to provide an email address for " \
+                            "letsencrypt at which important information " \
+                            "will be sent. Use EMAIL environment variable";
+                        exit 101; }
+[ -z "${DOMAINS}" ] && { echo "You need to provide the DOMAINS environment " \
+                              "variable that contains all the domains you " \
+                              "want a certificate for.";
+                        exit 102; }
 [ -z "$(printenv | grep LEXICON)" ] && { echo "You need to provide " \
                               "environment variables with the " \
                               "authentication data for your lexicon " \
                               "provider.";
-                        exit 101; }
+                        exit 103; }
 main "$@";

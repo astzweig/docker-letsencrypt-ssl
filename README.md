@@ -17,6 +17,8 @@ in a bold font. For the others you can supply a value:
 | **PROVIDER** | The name of the [lexcion-dns][2] provider you want to use. |
 | **PROVIDER\_DNS\_DELAY** | The amount of seconds you want cerbot to wait for your provider to update the DNS of your domain(s). |
 | **LEXICON\_{DNS Provider Name}\_{Auth Type}** | The authentication data for your [lexicon-dns][2] provider. See [here][6] for more info. |
+| **EMAIL** | Your email where you want to receive important information regarding your certificates from Let's Encrypt CA. |
+| **DOMAINS** | A colon (;) separated list of domain names that you want to get a SSL certificate for. Wildcard domains are supported. If you want multiple domains inside one certificate (SAN certificates) separate the domains with a colon. E.g. 'astzweig.de,sub.astzweig.de;*.example.com'.|
 
 _Note_: You will need to restart the container every time you change one of
 these environment variables.
