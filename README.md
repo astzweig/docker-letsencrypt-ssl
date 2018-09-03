@@ -15,6 +15,8 @@ in a bold font. For the others you can supply a value:
 | GITHUB_SLUG | The GitHub repository slug (e.g. astzweig/lexicon) of the [lexcion-dns][2] forkyou want to use. Default: 'analogj/lexicon'. |
 | GITHUB_BRANCH | The branch name of a branch in the [lexcion-dns][2] repository you want to use. Default: 'master'. |
 | **PROVIDER** | The name of the [lexcion-dns][2] provider you want to use. |
+| **PROVIDER\_DNS\_DELAY** | The amount of seconds you want cerbot to wait for your provider to update the DNS of your domain(s). |
+| **LEXICON\_{DNS Provider Name}\_{Auth Type}** | The authentication data for your [lexicon-dns][2] provider. See [here][6] for more info. |
 
 _Note_: You will need to restart the container every time you change one of
 these environment variables.
@@ -28,4 +30,5 @@ these environment variables.
 [3]: https://certbot.eff.org
 [4]: https://thenounproject.com/term/certification/1660646/
 [5]: https://eupl.eu/1.2/en/
+[6]: https://github.com/analogj/lexicon#environmental-variables
 [logo]: https://raw.githubusercontent.com/astzweig/docker-letsencrypt-ssl/master/logo.svg?sanitize=true

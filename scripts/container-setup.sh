@@ -51,4 +51,9 @@ main () {
                                "lexicon-dns via the PROVIDER environment " \
                                "variable.";
                         exit 100; }
+[ -z "$(printenv | grep LEXICON)" ] && { echo "You need to provide " \
+                              "environment variables with the " \
+                              "authentication data for your lexicon " \
+                              "provider.";
+                        exit 101; }
 main "$@";
