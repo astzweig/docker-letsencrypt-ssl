@@ -34,6 +34,36 @@ _install_lexicon() {
     [ $? -ne 0 ] && exit 2;
 }
 
+_create_cron_file() {
+    local DOMAINS="${1}";
+    local EMAIL="${2}";
+    local HOOK_FILE="${3}";
+    local CRON_FILE="${4}";
+
+    cat << EOF > "${CRON_FILE}"
+#!/bin/sh
+DOMAINS='${DOMAINS}';
+oldIFS="\${IFS}" IFS=';'
+set -- \${DOMAINS}
+IFS="\${oldIFS}";
+
+for domain; do
+    certbot certonly --non-interactive \\
+        --domains "\${domain}" \\
+        --renew-by-default \\
+        --agree-tos \\
+        -m '${EMAIL}' \\
+        --preferred-challenges dns \\
+        --manual \\
+        --manual-public-ip-logging-ok \\
+        --manual-auth-hook "${HOOK_FILE} auth" \\
+        --manual-cleanup-hook "${HOOK_FILE} cleanup";
+done;
+EOF
+    [ ! -f "${CRON_FILE}" ] && exit 3;
+    chmod u+x "${CRON_FILE}";
+}
+
 main () {
     local GITHUB_SLUG="${GITHUB_SLUG:-analogj/lexicon}";
     local BRANCH="${GITHUB_BRANCH:-master}";
@@ -41,11 +71,14 @@ main () {
     local EMAIL="${EMAIL}";
     local DOMAINS="${DOMAINS}";
     local REPO_DIR="/lexicon-repo";
+    local HOOK_FILE="/usr/local/bin/certbot-hook.sh";
+    local CRON_FILE="/etc/periodic/monthly/certbot-${PROVIDER}.sh";
 
     _install_lexicon "${GITHUB_SLUG}" \
                      "${REPO_DIR}" \
                      "${BRANCH}" \
                      "${PROVIDER}";
+    _create_cron_file "${DOMAINS}" "${EMAIL}" "${HOOK_FILE}" "${CRON_FILE}";
     return 0;
 }
 
