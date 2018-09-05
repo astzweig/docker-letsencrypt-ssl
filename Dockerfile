@@ -13,4 +13,5 @@ RUN for file in /root/scripts/[0-9]*.sh; do \
 
 RUN cp /root/scripts/[^0-9]*.sh /usr/local/bin && \
     chmod u+x /usr/local/bin/*.sh;
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["/usr/local/bin/container-setup.sh"]
