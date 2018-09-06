@@ -23,6 +23,10 @@ in a bold font. For the others you can supply a value:
 _Note_: You will need to restart the container every time you change one of
 these environment variables.
 
+## Caveats
+- This container will renew certificates automatically every month and overwrite
+  the old ones.
+
 ## License
 - Licensed under the [EUPL][5].
 - Logo: [certification by Creaticca Creative Agency from the Noun Project][4].
