@@ -5,6 +5,34 @@ A docker container to automatize the certification and renewal of
 [Let's Encrypt][1] SSL certificates with the help of [letsencrypt's certbot][3]
 and (possibly your own) [lexicon-dns][2].
 
+## Usage
+_Note: Replace '[...]' with all required [enviroment variables][7]._
+
+### Ad-hoc
+To try it out juse run:
+
+    $ docker pull astzweig/letsencrypt
+    $ cd $HOME;
+    $ docker [...] run -v ./certs:/etc/letsencrypt -t -i /bin/sh
+    # /etc/periodic/monthly/certbot-*.sh
+
+If successful you can find you certificates inside `$HOME/certs/live`.
+
+### Docker Compose
+Inside docker-compose.yml:
+
+```YAML
+version: "3.7"
+services:
+  ssl:
+    image: astzweig/letsencrypt
+    volumes:
+        - ~/certs:/etc/letsencrypt
+    environment:
+        - EMAIL=your@email.com
+        - [...]
+```
+
 ## Environment Variables
 The following table presents a list of variables that you can tweak in order to
 modify the container's runtime behaviour. You must supply a value for variables
@@ -37,4 +65,5 @@ these environment variables.
 [4]: https://thenounproject.com/term/certification/1660646/
 [5]: https://eupl.eu/1.2/en/
 [6]: https://github.com/analogj/lexicon#environmental-variables
+[7]: https://github.com/astzweig/docker-letsencrypt-ssl#environment-variables
 [logo]: https://raw.githubusercontent.com/astzweig/docker-letsencrypt-ssl/master/logo.svg?sanitize=true
