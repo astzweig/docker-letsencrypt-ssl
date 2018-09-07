@@ -1,0 +1,14 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2018-10-30
+### Added
+- Automatically retrieve and renew SSL certificates for domains using
+  Let's Encrypt's certbot (with ACMEv2 -> wildcard domains are supported)
+  and DNS validation using lexicon-dns or your own fork of it.
+- Set the domains you want a certificate for by passing environment variables
+  to the container.
+- Renew certificates automatically every month (and overwrite the old ones).
