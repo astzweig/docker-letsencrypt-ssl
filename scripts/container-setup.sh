@@ -50,7 +50,8 @@ IFS="\${oldIFS}";
 for domain; do
     certbot certonly --non-interactive \\
         --domains "\${domain}" \\
-        --renew-by-default \\
+        --keep-until-expiring \\
+        --expand \\
         --agree-tos \\
         -m '${EMAIL}' \\
         --preferred-challenges dns \\
@@ -72,7 +73,7 @@ main () {
     local DOMAINS="${DOMAINS}";
     local REPO_DIR="/lexicon-repo";
     local HOOK_FILE="/usr/local/bin/certbot-hook.sh";
-    local CRON_FILE="/etc/periodic/monthly/certbot-${PROVIDER}.sh";
+    local CRON_FILE="/etc/periodic/daily/certbot-${PROVIDER}.sh";
 
     _install_lexicon "${GITHUB_SLUG}" \
                      "${REPO_DIR}" \
