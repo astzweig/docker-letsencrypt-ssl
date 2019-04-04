@@ -51,6 +51,7 @@ for domain; do
     certbot certonly --non-interactive \\
         --domains "\${domain}" \\
         --keep-until-expiring \\
+        --server https://acme-v02.api.letsencrypt.org/directory \\
         --expand \\
         --agree-tos \\
         -m '${EMAIL}' \\
