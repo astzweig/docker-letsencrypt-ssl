@@ -81,6 +81,7 @@ main () {
                      "${BRANCH}" \
                      "${PROVIDER}";
     _create_cron_file "${DOMAINS}" "${EMAIL}" "${HOOK_FILE}" "${CRON_FILE}";
+    /usr/sbin/crond;
     "${CRON_FILE}";  # run hook once at container start-up
     return 0;
 }
