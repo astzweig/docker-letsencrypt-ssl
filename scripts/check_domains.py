@@ -1,6 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import sys
 sys.path.insert(0, '/usr/local/bin')
+from __future__ import print_function
 from hook import Storage, STORAGE_PATH
 
 domains = sys.argv(1).split(',')
