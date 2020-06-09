@@ -42,6 +42,7 @@ in a bold font. For the others you can supply a value:
 | **EMAIL** | Your email where you want to receive important information regarding your certificates from Let's Encrypt CA. |
 | **DOMAINS** | A colon (;) separated list of domain names that you want to get a SSL certificate for. Wildcard domains are supported. If you want multiple domains inside one certificate (SAN certificates) separate the domains with a colon. E.g. 'astzweig.de,sub.astzweig.de;*.example.com'.|
 | ACMEDNS_URL | The url to your acme dns server. Default value is: http://acmedns |
+| STAGING | If you set any value, certbot will use the staging environment of letsencrypt. This environment variable is unset by default. |
 
 _Note_: You will need to restart the container every time you change one of
 these environment variables.

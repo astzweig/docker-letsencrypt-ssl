@@ -15,6 +15,11 @@ IFS="\${oldIFS}";
 for domain; do
     EXTARG=""
     EXTARG=\$(python /usr/local/bin/check_domains.py "\${domain}")
+    if [ -z "\${STAGING}" ]; then
+        SERVER_URL=https://acme-v02.api.letsencrypt.org/directory
+    else
+        SERVER_URL=https://acme-staging-v02.api.letsencrypt.org/directory
+    fi
     certbot certonly \${EXTARG} \\
         --domains "\${domain}" \\
         --keep-until-expiring \\
