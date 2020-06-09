@@ -41,7 +41,7 @@ main () {
     local EMAIL="${EMAIL}";
     local DOMAINS="${DOMAINS}";
     local HOOK_FILE="/usr/local/bin/hook.py";
-    local CRON_FILE="/etc/periodic/daily/certbot.sh";
+    local CRON_FILE="/etc/periodic/daily/certbot";
 
     _create_cron_file "${DOMAINS}" "${EMAIL}" "${HOOK_FILE}" "${CRON_FILE}";
     "${CRON_FILE}";
