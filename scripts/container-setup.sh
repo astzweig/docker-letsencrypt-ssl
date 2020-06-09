@@ -14,14 +14,14 @@ IFS="\${oldIFS}";
 
 for domain; do
     EXTARG=""
-    EXTARG=$(python /usr/local/bin/check_domains.py "${domain}")
-    certbot certonly ${EXTARG} \\
+    EXTARG=\$(python /usr/local/bin/check_domains.py "\${domain}")
+    certbot certonly \${EXTARG} \\
         --domains "\${domain}" \\
         --keep-until-expiring \\
         --server https://acme-v02.api.letsencrypt.org/directory \\
         --expand \\
         --agree-tos \\
-        -m '${EMAIL}' \\
+        -m '\${EMAIL}' \\
         --preferred-challenges dns \\
         --manual \\
         --manual-public-ip-logging-ok \\
@@ -35,7 +35,7 @@ EOF
 main () {
     local EMAIL="${EMAIL}";
     local DOMAINS="${DOMAINS}";
-    local HOOK_FILE="/usr/local/bin/certbot-hook.sh";
+    local HOOK_FILE="/usr/local/bin/hook.sh";
     local CRON_FILE="/etc/periodic/daily/certbot.sh";
 
     _create_cron_file "${DOMAINS}" "${EMAIL}" "${HOOK_FILE}" "${CRON_FILE}";
