@@ -13,8 +13,8 @@ RUN for file in /root/scripts/[0-9]*.sh; do \
         "${file}"; \
     done
 
-RUN cp /root/scripts/[^0-9]*.{sh,py} /usr/local/bin && \
-    chmod u+x /usr/local/bin/*.{sh,py} && \
-    rm /root/scripts/[^0-9]*.{sh,py};
+RUN cp /root/scripts/[^0-9]*.sh /root/scripts/[^0-9]*.py /usr/local/bin && \
+    chmod u+x /usr/local/bin/*.sh /usr/local/bin/*.py && \
+    rm /root/scripts/[^0-9]*.sh /root/scripts/[^0-9]*.py;
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["/usr/local/bin/container-setup.sh"]
