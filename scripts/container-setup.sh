@@ -8,7 +8,6 @@ _create_cron_file() {
 
     cat << EOF > "${CRON_FILE}"
 #!/bin/sh
-DOMAINS='${DOMAINS}';
 oldIFS="\${IFS}" IFS=';'
 set -- \${DOMAINS}
 IFS="\${oldIFS}";
