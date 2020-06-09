@@ -8,6 +8,6 @@ domains = sys.argv[1].split(',')
 for domain in domains:
     storage = Storage(STORAGE_PATH)
     if not storage.fetch(domain):
-        print('--debug-challenge', end="")
+        print('--debug-challenges', end="")
         sys.exit(0)
 print('--non-interactive', end="")
