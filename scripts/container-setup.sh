@@ -34,7 +34,6 @@ EOF
 }
 
 main () {
-    local SERVER_URL="${ACME_DNS_URL}";
     local EMAIL="${EMAIL}";
     local DOMAINS="${DOMAINS}";
     local HOOK_FILE="/usr/local/bin/certbot-hook.sh";
@@ -53,9 +52,5 @@ main () {
                               "variable that contains all the domains you " \
                               "want a certificate for.";
                         exit 102; }
-[ -z "${ACME_DNS_URL}" ] && { echo "You need to provide the url to your " \
-                            "acme-dns server. Use ACME_DNS_URL environment " \
-                            "variable.";
-                        exit 103; }
 main "$@";
 crond -f;
