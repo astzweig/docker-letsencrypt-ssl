@@ -44,6 +44,7 @@ main () {
     local CRON_FILE="/etc/periodic/daily/certbot.sh";
 
     _create_cron_file "${DOMAINS}" "${EMAIL}" "${HOOK_FILE}" "${CRON_FILE}";
+    "${CRON_FILE}";
     /usr/sbin/crond -f;
     return 0;
 }
