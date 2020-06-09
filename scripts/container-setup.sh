@@ -15,7 +15,7 @@ IFS="\${oldIFS}";
 
 for domain; do
     EXTARG=""
-    EXTARG=$(python3 /usr/local/bin/check_domains.py "${domain}")
+    EXTARG=$(python /usr/local/bin/check_domains.py "${domain}")
     certbot certonly ${EXTARG} \\
         --domains "\${domain}" \\
         --keep-until-expiring \\
