@@ -26,7 +26,7 @@ for domain; do
         --server https://acme-v02.api.letsencrypt.org/directory \\
         --expand \\
         --agree-tos \\
-        -m '\${EMAIL}' \\
+        -m "\${EMAIL}" \\
         --preferred-challenges dns \\
         --manual \\
         --manual-public-ip-logging-ok \\
